@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-const Button = (props) => {
+const CustomButton = (props) => {
     const { buttontext, onSubmit } = props;
     return (
         <button onClick={onSubmit} data-test="buttonComponent" {...props}>
@@ -10,4 +10,4 @@ const Button = (props) => {
     )
 }
 
-export { Button };
+export { CustomButton };
