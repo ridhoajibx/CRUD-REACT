@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and [TailwidCSS](https://tailwindcss.com) as UI Framework.
 
+## DEMO Website
+
+[https://ridhoajibx.github.io/CRUD-REACT](https://ridhoajibx.github.io/CRUD-REACT)
+
 ## Available Scripts
 
 In the project directory, you can run:
