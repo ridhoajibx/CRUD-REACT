@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import { useEffect } from "react";
 
 function MultiSelect(props) {
-    const { data, selectedItem, setSelectedItem } = props;
+    const { data, defaultValueTag, selectedItem, setSelectedItem } = props;
 
     function isSelected(value) {
         return selectedItem.find((el) => el === value) ? true : false;
@@ -24,6 +24,12 @@ function MultiSelect(props) {
         const selectedItemUpdated = selectedItem.filter((el) => el !== value);
         setSelectedItem(selectedItemUpdated);
     }
+
+    useEffect(() => {
+        if (defaultValueTag) {
+            setSelectedItem(defaultValueTag)
+        }
+    }, [defaultValueTag, setSelectedItem]);
 
     return (
         <div className="relative w-full mb-3">

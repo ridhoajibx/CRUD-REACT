@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import './App.css';
 import { CustomButton } from './Components/Button';
 import CreateNewPost from './Components/CreateNewPost';
+import ModifyPost from './Components/ModifyPost';
 import Post from './Components/Post';
 
 const allTags = ["react", "vue", "svelte", "next", "gatsby"];
@@ -15,28 +16,30 @@ function App() {
     const [allPosts, setAllPosts] = useState([
         {
             id: 1,
-            title: "anak toktok",
+            title: "Popular Frontend Framework",
             body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam non veniam voluptates voluptatum laudantium eaque nesciunt ea accusantium tempore nihil.",
-            tags: ["fyp", "viral"]
+            tags: ["react", "vue"]
 
         },
         {
             id: 2,
-            title: "anak mama",
+            title: "New Face",
             body:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas amet deserunt aliquid doloremque dolore eaque maiores dignissimos molestiae voluptatum. Quisquam!",
-            tags: ["viral", "hot"]
+            tags: ["svelte"]
         },
         {
             id: 3,
-            title: "anak siapa ?",
+            title: "React Framework",
             body:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas amet deserunt aliquid doloremque dolore eaque maiores dignissimos molestiae voluptatum. Quisquam!",
-            tags: ["viral", "hilang"]
+            tags: ["gatsby", "next"]
         }
     ]);
 
     const [isCreateNewPost, setIsCreateNewPost] = useState(false);
+    const [isModifyPost, setIsModifyPost] = useState(false);
+    const [editPostId, setEditPostId] = useState("");
 
     const toggleCreateNewPost = () => {
         setIsCreateNewPost(!isCreateNewPost);
@@ -63,6 +66,34 @@ function App() {
         toggleCreateNewPost();
     };
 
+    const toggleModifyPostComponent = () => {
+        setIsModifyPost(!isModifyPost);
+    };
+
+    const editPost = (id) => {
+        setEditPostId(id);
+        toggleModifyPostComponent();
+        console.log(id, 'cek id')
+    };
+
+    const updatePost = (event) => {
+        event.preventDefault();
+        const updatedPost = allPosts.map((eachPost) => {
+            if (eachPost.id === editPostId) {
+                return {
+                    ...eachPost,
+                    title: title || eachPost.title,
+                    body: body || eachPost.body,
+                    tags: tags || eachPost.tags
+                };
+            }
+
+            return eachPost;
+        });
+        setAllPosts(updatedPost);
+        toggleModifyPostComponent();
+    };
+
     if (isCreateNewPost) {
         return (
             <CreateNewPost
@@ -76,6 +107,28 @@ function App() {
                 setTags={setTags}
                 toggleCreateNewPost={toggleCreateNewPost}
             />
+        );
+    } else if (isModifyPost) {
+        const post = allPosts.find((post) => {
+            return post.id === editPostId;
+        });
+
+        return (
+            <>
+                <ModifyPost
+                    title={post.title}
+                    body={post.body}
+                    defaultValueTag={post.tags}
+                    updatePost={updatePost}
+                    savePostTitleToState={savePostTitleToState}
+                    savePostBodyToState={savePostBodyToState}
+                    toggleCreateNewPost={toggleCreateNewPost}
+                    toggleModifyPostComponent={toggleModifyPostComponent}
+                    allTags={allTags}
+                    tags={tags}
+                    setTags={setTags}
+                />
+            </>
         );
     }
 
@@ -96,6 +149,7 @@ function App() {
                                 title={title}
                                 body={body}
                                 tags={tags}
+                                editPost={editPost}
                             />
                         )
                     }) :

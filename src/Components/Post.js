@@ -2,15 +2,13 @@ import React from 'react'
 import { CustomButton } from './Button';
 
 export default function Post(props) {
-    const { id, title, body, tags } = props;
+    const { id, title, body, tags, editPost } = props;
 
     const editBtnProps = {
         className: "btn-primary text-primary-500 mx-2",
         buttontext: "Edit",
         type: "button",
-        onSubmit: () => {
-
-        }
+        onSubmit: () => editPost(id)
     }
 
     const deleteBtnProps = {
