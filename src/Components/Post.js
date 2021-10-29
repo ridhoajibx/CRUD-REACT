@@ -2,7 +2,7 @@ import React from 'react'
 import { CustomButton } from './Button';
 
 export default function Post(props) {
-    const { id, title, body, tags, editPost } = props;
+    const { id, title, body, tags, editPost, deletePost } = props;
 
     const editBtnProps = {
         className: "btn-primary text-primary-500 mx-2",
@@ -13,11 +13,9 @@ export default function Post(props) {
 
     const deleteBtnProps = {
         className: "btn-danger text-red-500 mx-1",
-        buttontext: "Hapus",
+        buttontext: "Delete",
         type: "button",
-        onSubmit: () => {
-
-        }
+        onSubmit: () => deletePost(id)
     }
     return (
         <div className="w-full md:w-1/2 lg:w-1/3 mt-2">

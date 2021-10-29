@@ -3,7 +3,7 @@ import { CustomButton } from "./Button";
 import MultiSelect from "./MultiSelect";
 
 const ModifyPost = (props) => {
-    console.log(props)
+    // console.log(props)
     return (
         <div className="relative">
             <h1 className="my-4 text-3xl sm:text-4xl font-bold text-center">Modify article</h1>
@@ -58,7 +58,7 @@ const ModifyPost = (props) => {
                                 <CustomButton
                                     type="submit"
                                     className="btn-primary text-primary-800 mr-2"
-                                    buttontext="Edit"
+                                    buttontext="Update"
                                 />
                                 <CustomButton
                                     type="button"
