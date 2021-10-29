@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Post from './Components/Post';
 
 function App() {
     const [title, setTitle] = useState("");
@@ -32,25 +33,10 @@ function App() {
     return (
         <div className="w-full">
             <div className="uppercase font-bold text-xl">title</div>
-            {allPosts.length > 0 && allPosts.map((post, idx) => {
+            {allPosts.length > 0 && allPosts.map(post => {
                 const { id, title, body, tags } = post;
                 return (
-                    <div className="card">
-                        <section key={idx}>
-                            <h3>{title}</h3>
-                            <hr className="new1"></hr>
-                            <p>{body}</p>
-                            <div>
-                                {tags.length === 0 ? null :
-                                    tags.map(tag => (
-                                        <a href="!#" className="text-secondary-100">{`#${tag} `}</a>
-                                    ))
-                                }
-                            </div>
-                            <button>Edit</button>
-                            <button>Delete</button>
-                        </section>
-                    </div>
+                    <Post id={id} title={title} body={body} tags={tags} />
                 )
             })}
         </div>
