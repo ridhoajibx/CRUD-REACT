@@ -29,16 +29,23 @@ function App() {
             tags: ["viral", "hilang"]
         }
     ]);
-    
+
     return (
         <div className="w-full">
-            <div className="uppercase font-bold text-xl">title</div>
-            {allPosts.length > 0 && allPosts.map(post => {
-                const { id, title, body, tags } = post;
-                return (
-                    <Post id={id} title={title} body={body} tags={tags} />
-                )
-            })}
+            <div className="my-5 mx-4">
+                <div className="flex justify-center items-center">
+                    <h1 className="uppercase text-primary-500 font-bold text-2xl mb-4">Articles</h1>
+                </div>
+
+                <div className="flex flex-wrap">
+                    {allPosts.length > 0 && allPosts.map(post => {
+                        const { id, title, body, tags } = post;
+                        return (
+                            <Post id={id} title={title} body={body} tags={tags} />
+                        )
+                    })}
+                </div>
+            </div>
         </div>
     );
 }
