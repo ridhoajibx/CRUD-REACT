@@ -1,5 +1,5 @@
 {
-    "name": "CRUD-REACT",
+    "name": "crud-react",
     "homepage": "http://ridhoajibx.github.io/CRUD-REACT",
     "version": "0.1.0",
     "private": true,
@@ -19,6 +19,7 @@
         "build": "craco build",
         "test": "craco test",
         "eject": "react-scripts eject",
+        "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
