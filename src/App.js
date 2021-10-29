@@ -12,7 +12,6 @@ function App() {
     const [body, setBody] = useState("");
     const [tags, setTags] = useState([]);
 
-    console.log(tags, 'cek')
     const [allPosts, setAllPosts] = useState([
         {
             id: 1,
@@ -73,7 +72,6 @@ function App() {
     const editPost = (id) => {
         setEditPostId(id);
         toggleModifyPostComponent();
-        console.log(id, 'cek id')
     };
 
     const updatePost = (event) => {
@@ -92,6 +90,13 @@ function App() {
         });
         setAllPosts(updatedPost);
         toggleModifyPostComponent();
+    };
+
+    const deletePost = (id) => {
+        const modifiedPost = allPosts.filter((eachPost) => {
+            return eachPost.id !== id;
+        });
+        setAllPosts(modifiedPost);
     };
 
     if (isCreateNewPost) {
@@ -150,11 +155,14 @@ function App() {
                                 body={body}
                                 tags={tags}
                                 editPost={editPost}
+                                deletePost={deletePost}
                             />
                         )
                     }) :
-                        <div>
-                            <li>There are no posts yet.</li>
+                        <div className="w-full mb-4">
+                            <div className="flex justify-center items-center">
+                                <span className="text-center">There are no posts yet.</span>
+                            </div>
                         </div>
                     }
                 </div>
